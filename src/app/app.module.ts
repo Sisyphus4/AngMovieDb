@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {moviesReducer} from './Core/NgRx/movies.reducers'
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,13 @@ import {moviesReducer} from './Core/NgRx/movies.reducers'
     HttpClientModule,
     FormsModule,
     StoreModule.forRoot({ moviesReducer }),
+    // StoreModule.forRoot(reducers, {
+    //   metaReducers,
+    //   runtimeChecks: {
+    //     strictStateImmutability: true,
+    //     strictActionImmutability: true
+    //   }
+    // }),
     EffectsModule.forRoot([AppEffects, MoviesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
