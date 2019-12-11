@@ -12,7 +12,7 @@ export class MoviesEffects {
     ofType('[Movies Page] Load Movies'),
     mergeMap(() => this.MovieDbService.getMovies()
       .pipe(
-        map( response=> (MoviesActions.getPopularMoviesSuccess({movies: response.results}))),
+        map( response=> ( MoviesActions.getPopularMoviesSuccess({movies: response.results}))),
         catchError(() => EMPTY)
       ))
     )

@@ -3,4 +3,6 @@
 <div *ngFor="let movie of movies$ | async">
     <p>{{movie.title}}</p>
 </div>
+<button (click)='console()'>asd</button>
+
 <ng-template #elseBlock>Content to render when condition is false.</ng-template>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as MoviesActions from '../../Core/NgRx/movies.actions';
+import {State} from '../../Core/NgRx/movies.reducers';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,15 @@ import * as MoviesActions from '../../Core/NgRx/movies.actions';
 })
 export class HomeComponent implements OnInit {
   movies$: Observable<[]>;
-  constructor(private store: Store<{ movies: [] }>){
-    this.movies$ = store.pipe(select(state=>state.movies));
-   }
+  constructor(private store: Store<State>) {
+    this.movies$ = store.pipe(select(state=>state.moviesReducer.movies));
+  }
 
   ngOnInit() {
     this.getMovies();
+  }
+
+  console() {
   }
 
   getMovies(): void {

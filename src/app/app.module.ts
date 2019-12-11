@@ -24,7 +24,7 @@ import {moviesReducer} from './Core/NgRx/movies.reducers'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({ moviesState: moviesReducer }),
+    StoreModule.forRoot({ moviesReducer }),
     EffectsModule.forRoot([AppEffects, MoviesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
