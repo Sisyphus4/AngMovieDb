@@ -1,0 +1,7 @@
+<div>
+<p>home works!</p>
+<div *ngFor="let movie of movies$ | async">
+    <app-movie-preview [movie]="movie"></app-movie-preview>
+</div>
+<button (click)='console()'>asd</button>
+</div>

@@ -1,0 +1,9 @@
+{
+    "getPopularMoviesRequest": "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc",
+    "APIkey": "619815e4b2022dff08a72fdc13100b01",
+    "getMovieRequest": "https://api.themoviedb.org/3/movie/",
+    "getCastRequest": "credits",
+    "searchMovieRequest": "https://api.themoviedb.org/3/search/movie",
+    "imgsrc185": "https://image.tmdb.org/t/p/w185/",
+    "imgsrc300": "https://image.tmdb.org/t/p/w300/"
+}
