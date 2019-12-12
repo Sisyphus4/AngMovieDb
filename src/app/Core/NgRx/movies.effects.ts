@@ -10,7 +10,7 @@ export class MoviesEffects {
  
   loadMovies$ = createEffect(() => this.actions$.pipe(
     ofType('[Movies Page] Load Movies'),
-    mergeMap(() => this.MovieDbService.getMovies()
+    mergeMap(() => this.MovieDbService.getData('movies',0)
       .pipe(
         map( response=> ( MoviesActions.getPopularMoviesSuccess({movies: response.results}))),
         catchError(() => EMPTY)

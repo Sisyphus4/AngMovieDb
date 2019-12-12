@@ -1,16 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as MoviesActions from './movies.actions';
-
-export interface State {
-    moviesReducer: {
-        movies: [];
-    }
-}
+import { State } from './state.interface';
 
 export const initialState: State = {
-    moviesReducer: {
-        movies: []
-    }
+    movies: [],
 };
 
 const _moviesReducer = createReducer(

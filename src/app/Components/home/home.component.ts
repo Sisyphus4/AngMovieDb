@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as MoviesActions from '../../Core/NgRx/movies.actions';
-import {State} from '../../Core/NgRx/movies.reducers';
+import * as MoviesActions from '../../core/ngrx/movies.actions';
+import { AppState } from '../../core/ngrx/state.interface';
+import { selectMovies } from '../../core/ngrx/movies.selector';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   movies$: Observable<[]>;
-  constructor(private store: Store<State>) {
-    this.movies$ = store.pipe(select(state=>state.moviesReducer.movies));
+
+  constructor(private store: Store<AppState>) {
+    this.movies$ = store.select(state => selectMovies(state));
   }
 
   ngOnInit() {
     this.getMovies();
-  }
-
-  console() {
   }
 
   getMovies(): void {

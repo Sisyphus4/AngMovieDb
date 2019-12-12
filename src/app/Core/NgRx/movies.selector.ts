@@ -1,8 +1,9 @@
 import { createSelector } from '@ngrx/store';
+import { State, AppState } from './state.interface';
  
+export const selectFeature = (state: AppState) => state.moviesReducer;
  
-export interface AppState {
-  movies: [];
-}
-
-export const selectPopularMovies = (state: AppState) => state.movies;
+export const selectMovies = createSelector(
+  selectFeature,
+  (state: State) => state.movies
+);
