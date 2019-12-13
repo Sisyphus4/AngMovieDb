@@ -1,9 +1,19 @@
 .app-home {
-    padding-left: 50px;
-    display: inline-block;
+  margin-left: 50px;
 }
 
 .app-home h1{
   text-align: center;
   width:100%;
 }
+
+.app-movie-preview {
+  display: inline-block;
+  margin-left:10px;
+  margin-bottom:10px;
+  width:250px;
+  height: 500px;
+  border: solid 1px;
+  padding: 15px;
+}
+

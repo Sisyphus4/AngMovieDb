@@ -7,6 +7,7 @@ import { AppState } from '../../../core/ngrx/state.interface';
 import { selectMovie } from '../../../core/ngrx/movies.selector';
 import { ActivatedRoute } from '@angular/router';
 import movieDbConf from '../../../core/services/movieDbconfig.json';
+import { Movie } from './movie.interface';
 
 @Component({
   selector: 'app-movie',
@@ -17,22 +18,21 @@ import movieDbConf from '../../../core/services/movieDbconfig.json';
 export class MovieComponent implements OnInit, OnDestroy {
 
   imgSrc: string;
-  movie$: Observable<[]>;
+  movie$: Observable<Movie>;
   subscription: Subscription;
-  movie: any;
+  movie: Movie;
 
-  constructor(private store: Store<AppState>, private route: ActivatedRoute, ) {
-    this.movie$ = this.store.select(state => selectMovie(state));
-    this.subscription = this.movie$.subscribe(
-      (movie: any) => {
-        this.movie = movie;
-        movie ? this.imgSrc = movieDbConf.imgsrc300 + movie.poster_path : this.imgSrc = "";
-      }
-    );
-  }
+  constructor(private store: Store<AppState>, private route: ActivatedRoute, ) { }
 
   ngOnInit() {
     this.getMovie();
+    this.movie$ = this.store.select(state => selectMovie(state));
+    this.subscription = this.movie$.subscribe(
+      (movie: Movie) => {
+        this.movie = movie;
+        this.imgSrc = movie ? movieDbConf.imgsrc300 + movie.poster_path : '';
+      }
+    );
   }
 
   getMovie(): void {

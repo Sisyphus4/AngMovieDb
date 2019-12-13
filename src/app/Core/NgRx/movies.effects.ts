@@ -20,7 +20,7 @@ export class MoviesEffects {
 
   loadMovie$ = createEffect(() => this.actions$.pipe(
     ofType('[Movie Page] Load Movie'),
-    mergeMap((action:any) => this.MovieDbService.getData('movie', action.id)
+    mergeMap((action: MoviesActions.GetMovieAction) => this.MovieDbService.getData('movie', action.id)
       .pipe(
         map(response => (MoviesActions.getMovieSuccess({ movie: response }))),
         catchError(() => EMPTY)

@@ -9,6 +9,9 @@ export const getPopularMoviesSuccess = createAction(
     props<{ movies: []}>()
 );
 
+export interface GetMovieAction{
+    id:number;
+}
 export const getMovie = createAction(
     '[Movie Page] Load Movie',
     props<{ id: number}>(),

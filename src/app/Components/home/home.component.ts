@@ -14,12 +14,11 @@ import { selectMovies } from '../../core/ngrx/movies.selector';
 export class HomeComponent implements OnInit {
   movies$: Observable<[]>;
 
-  constructor(private store: Store<AppState>) {
-    this.movies$ = store.select(state => selectMovies(state));
-  }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.getMovies();
+    this.movies$ = this.store.select(state => selectMovies(state));
   }
 
   getMovies(): void {
