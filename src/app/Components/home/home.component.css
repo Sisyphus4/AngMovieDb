@@ -1,8 +1,9 @@
-app-home {
+.app-home {
     padding-left: 50px;
+    display: inline-block;
 }
 
-app-home h1{
+.app-home h1{
   text-align: center;
   width:100%;
 }

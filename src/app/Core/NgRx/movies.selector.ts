@@ -7,3 +7,8 @@ export const selectMovies = createSelector(
   selectFeature,
   (state: State) => state.movies
 );
+
+export const selectMovie = createSelector(
+  selectFeature,
+  (state: State) => state.movie
+);

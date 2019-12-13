@@ -1,0 +1,18 @@
+.app-movie-preview {
+    margin:10px;
+    width:250px;
+    height: 500px;
+    border: solid 1px;
+    padding: 15px;
+  }
+  
+.app-movie-preview h2, .OneOfComparedMovies h2{
+    width:100%;
+    height: 80px;
+    cursor: pointer;
+  }
+.app-movie-preview img, .OneOfComparedMovies img{
+    width: 185px;
+    height: 278px;
+    cursor: pointer;
+  }
