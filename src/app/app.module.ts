@@ -13,14 +13,16 @@ import { MoviesEffects } from './core/ngrx/movies.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {moviesReducer} from './core/ngrx/movies.reducers';
-import { MoviePreviewComponent } from './components/movie-preview/movie-preview.component'
+import { MoviePreviewComponent } from './components/movie-preview/movie-preview.component';
+import { MovieComponent } from './components/Movie/movie/movie.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MoviePreviewComponent
+    MoviePreviewComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
