@@ -1,5 +1,6 @@
 <div class="app-movie">
     <h2>{{(movie$|async)?.title}}</h2>
-    <img *ngIf="movie" src='{{imgSrc}}' />
+    <img src='{{imgSrc}}' />
     <p>Release date: {{(movie$|async)?.release_date}}</p>
+    <app-comment *ngIf="movie" [id]="movie.id"></app-comment>
 </div>

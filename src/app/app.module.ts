@@ -13,8 +13,9 @@ import { MoviesEffects } from './core/ngrx/movies.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {moviesReducer} from './core/ngrx/movies.reducers';
-import { MoviePreviewComponent } from './components/movie-preview/movie-preview.component';
-import { MovieComponent } from './components/Movie/movie/movie.component'
+import { MoviePreviewComponent } from './components/movie/movie-preview/movie-preview.component';
+import { MovieComponent } from './components/Movie/movie/movie.component';
+import { CommentComponent } from './components/comment/comment.component'
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MovieComponent } from './components/Movie/movie/movie.component'
     AppComponent,
     HomeComponent,
     MoviePreviewComponent,
-    MovieComponent
+    MovieComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

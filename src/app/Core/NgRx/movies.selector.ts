@@ -12,3 +12,8 @@ export const selectMovie = createSelector(
   selectFeature,
   (state: State) => state.movie
 );
+
+export const selectComments = createSelector(
+  selectFeature,
+  (state: State) => state.comments
+);

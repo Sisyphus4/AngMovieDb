@@ -9,6 +9,16 @@ export const getPopularMoviesSuccess = createAction(
     props<{ movies: []}>()
 );
 
+export const getComments = createAction(
+    '[Movie Page] Load Comments',
+    props<{ id: number}>(),
+);
+
+export const getCommentsSuccess = createAction(
+    '[Movies API] Comments Loaded Success',
+    props<{ comments: JSON}>()
+);
+
 export interface GetMovieAction{
     id:number;
 }

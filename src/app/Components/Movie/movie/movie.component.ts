@@ -6,7 +6,7 @@ import * as MoviesActions from '../../../core/ngrx/movies.actions';
 import { AppState } from '../../../core/ngrx/state.interface';
 import { selectMovie } from '../../../core/ngrx/movies.selector';
 import { ActivatedRoute } from '@angular/router';
-import movieDbConf from '../../../core/services/movieDbconfig.json';
+import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
 import { Movie } from './movie.interface';
 
 @Component({
