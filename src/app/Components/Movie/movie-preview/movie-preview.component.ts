@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Movie } from '../movie/movie.interface';
+import { Movie } from '../../../core/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movie-preview',

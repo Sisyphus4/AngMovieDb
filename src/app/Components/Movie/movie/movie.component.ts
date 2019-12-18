@@ -2,12 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Subscription } from "rxjs";
-import * as MoviesActions from '../../../core/ngrx/movies.actions';
-import { AppState } from '../../../core/ngrx/state.interface';
-import { selectMovie } from '../../../core/ngrx/movies.selector';
+import * as MoviesActions from '../../../core/ngrx/actions/movies.actions';
+import { AppState } from '../../../core/interfaces/state.interface';
+import { selectMovie } from '../../../core/ngrx/selectors/movies.selectors';
 import { ActivatedRoute } from '@angular/router';
 import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
-import { Movie } from './movie.interface';
+import { Movie } from '../../../core/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movie',

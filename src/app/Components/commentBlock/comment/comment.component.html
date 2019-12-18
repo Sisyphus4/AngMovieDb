@@ -1,0 +1,9 @@
+<div class="app-home">
+    <div *ngFor="let comment of comments$ | async">
+        <p>Author: {{comment.author}}</p>
+        <p>Comment: {{comment.text}}</p>
+        <button (click)='onDelete(comment.id)'>Delete</button>
+    </div>
+    <app-post-comment [movieId]="movieId"></app-post-comment>
+
+</div>

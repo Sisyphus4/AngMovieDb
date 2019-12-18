@@ -1,3 +1,6 @@
 {
-    "getComments" : "http://localhost:3000/api/comments/getComments"
+    "apiCommentRequset" : "http://localhost:3000/api/comments",
+    "getComments" : "/getComments",
+    "postComment" : "/postComment",
+    "deleteComment": "/deleteComment"
 }
