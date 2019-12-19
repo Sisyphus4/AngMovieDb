@@ -4,3 +4,7 @@ export interface GetMovieAction {
 export interface DeleteAction {
     id: string;
 }
+export interface updateAction {
+    id: string;
+    text: string;
+}

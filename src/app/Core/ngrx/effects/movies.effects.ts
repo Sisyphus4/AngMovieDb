@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, exhaustMap } from 'rxjs/operators';
 import { MovieDbService } from '../../services/movieDbService/movie-db.service';
-import { MyServerService } from '../../services/myServerService/comments.service/my-server.service';
 import * as MoviesActions from '../actions/movies.actions';
 import { Movie } from '../../interfaces/movie.interface';
 import { GetMovieAction } from '../../interfaces/interfaces';

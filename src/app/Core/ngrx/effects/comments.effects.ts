@@ -5,7 +5,7 @@ import { map, mergeMap, catchError, exhaustMap, mapTo } from 'rxjs/operators';
 import { MyServerService } from '../../services/myServerService/comments.service/my-server.service';
 import * as CommentsActions from '../actions/comments.actions';
 import { Comment } from '../../interfaces/comment.interface';
-import { GetMovieAction, DeleteAction } from '../../interfaces/interfaces';
+import { GetMovieAction, DeleteAction, updateAction } from '../../interfaces/interfaces';
 
 
 
@@ -32,14 +32,21 @@ export class CommentsEffects {
   )
   );
 
+  editComment$ = createEffect(() => this.actions$.pipe(
+    ofType('[My API] Edit Comment'),
+    mergeMap((action: updateAction) => this.MyServerService.editComment(action.id, action.text)
+      .pipe(
+        map(response => (CommentsActions.editCommentSuccess(response))),
+        catchError(() => EMPTY)
+      ))
+  )
+  );
+
   deleteComment$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Delete Comment'),
     mergeMap((action: DeleteAction) => this.MyServerService.deleteComment(action.id)
       .pipe(
-        map(response => {
-          console.log(response);
-          return CommentsActions.deleteCommentSuccess({ id: action.id })
-        }),
+        map(response => CommentsActions.deleteCommentSuccess({ id: action.id })),
         catchError(() => EMPTY)
       ))
   )

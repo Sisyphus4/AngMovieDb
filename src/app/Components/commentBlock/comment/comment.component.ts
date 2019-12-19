@@ -15,6 +15,7 @@ export class CommentComponent implements OnInit {
   @Input() movieId: number;
 
   comments$: Observable<Comment[]>;
+  editingId: string;
 
   constructor(private store: Store<AppState>) { }
 
@@ -25,6 +26,16 @@ export class CommentComponent implements OnInit {
 
   onDelete(id: string) {
     this.store.dispatch(CommentsActions.deleteComment({ id: id }));
+
   }
 
+  onUpdate() {
+    this.editingId='';
+  }
+
+  onEdit(id: string) {
+    this.editingId === id
+      ? this.editingId = ''
+      : this.editingId = id;
+  }
 }

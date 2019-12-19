@@ -12,11 +12,19 @@ const _moviesReducer = createReducer(
     initialState,
     on(CommentsActions.getCommentsSuccess, (state, payload) => ({ ...state, comments: payload.comments })),
     on(CommentsActions.postCommentSuccess, (state, payload) => ({ ...state, comments: [...state.comments, payload] })),
-    on(CommentsActions.deleteCommentSuccess, (state, payload) =>{
+    on(CommentsActions.deleteCommentSuccess, (state, payload) => {
         let comments = [...state.comments];
-        let deletedComment=comments.find(comment => comment.id==payload.id)
+        let deletedComment = comments.find(comment => comment.id == payload.id)
         comments.splice(comments.indexOf(deletedComment), 1);
-        console.log('asd')
+        return { ...state, comments }
+    }),
+    on(CommentsActions.editCommentSuccess, (state, payload) => {
+        let comments = state.comments.map(comment => {
+            if(comment.id===payload.id){
+                comment=payload;
+            }
+            return comment;
+        });
         return { ...state, comments }
     }),
 );

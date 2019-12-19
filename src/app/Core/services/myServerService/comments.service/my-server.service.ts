@@ -26,6 +26,11 @@ export class MyServerService {
     return this.http.post<Comment>(request, { text, author });
   }
 
+  editComment(id: string, text: string): Observable<Comment> {
+    let request = `${myServerConfig.apiCommentRequset}${myServerConfig.updateComment}`;
+    return this.http.put<Comment>(request, { text, id });
+  }
+
   deleteComment(id: string): Observable<JSON> {
     let request = `${myServerConfig.apiCommentRequset}${myServerConfig.deleteComment}/${id}`;
     return this.http.delete<JSON>(request);

@@ -21,8 +21,13 @@ import { CommentComponent } from './components/commentBlock/comment/comment.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostCommentComponent } from './components/commentBlock/post-comment/post-comment.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditCommentComponent } from './components/commentBlock/edit-comment/edit-comment.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 
 
+const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule];
 
 @NgModule({
   declarations: [
@@ -31,9 +36,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MoviePreviewComponent,
     MovieComponent,
     CommentComponent,
-    PostCommentComponent
+    PostCommentComponent,
+    EditCommentComponent
   ],
   imports: [
+    ...mat_modules,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -51,6 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
   ],
+  exports: [...mat_modules],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -22,6 +22,16 @@ export const postCommentSuccess = createAction(
     props<Comment>(),
 );
 
+export const editComment = createAction(
+    '[My API] Edit Comment',
+    props<Comment>(),
+);
+
+export const editCommentSuccess = createAction(
+    '[My API] Edit Comment Success',
+    props<Comment>(),
+);
+
 export const deleteComment = createAction(
     '[My API] Delete Comment',
     props<DeleteAction>(),
