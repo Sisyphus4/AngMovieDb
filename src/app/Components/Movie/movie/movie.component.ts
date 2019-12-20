@@ -50,10 +50,6 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.store.dispatch(MoviesActions.getMovie({ id: Number(this.route.snapshot.params['id']) }));
   }
 
-  onClick(value) {
-    this.ratingForm.voteCount=
-    console.log(value);
-  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

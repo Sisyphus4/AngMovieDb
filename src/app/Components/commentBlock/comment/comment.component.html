@@ -8,10 +8,10 @@
         <ng-template #elseBlock>
             <p>Author: {{comment.author}}</p>
             <p>Comment: {{comment.text}}</p>
-            <p *ngIf="comment.createdAt===comment.updatedAt; else elseP">
+            <p *ngIf="comment.createdAt===comment.updatedAt; else updateDate">
                 Posted at {{comment.createdAt | date:'medium'}}
             </p>
-            <ng-template #elseP>
+            <ng-template #updateDate>
                 <p>Updated at {{comment.updatedAt | date:'medium'}}</p>
             </ng-template>
             <button mat-raised-button (click)='onDelete(comment.id)'>Delete</button>
