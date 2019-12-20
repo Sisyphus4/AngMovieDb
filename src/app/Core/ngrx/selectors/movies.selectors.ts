@@ -1,14 +1,14 @@
 import { createSelector } from '@ngrx/store';
-import { State, AppState } from './state.interface';
- 
+import { MovieState, AppState } from '../../interfaces/state.interface';
+
 export const selectFeature = (state: AppState) => state.moviesReducer;
- 
+
 export const selectMovies = createSelector(
   selectFeature,
-  (state: State) => state.movies
+  (state: MovieState) => state.movies
 );
 
 export const selectMovie = createSelector(
   selectFeature,
-  (state: State) => state.movie
+  (state: MovieState) => state.movie
 );

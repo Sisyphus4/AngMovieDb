@@ -2,12 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Subscription } from "rxjs";
-import * as MoviesActions from '../../../core/ngrx/movies.actions';
-import { AppState } from '../../../core/ngrx/state.interface';
-import { selectMovie } from '../../../core/ngrx/movies.selector';
+import * as MoviesActions from '../../../core/ngrx/actions/movies.actions';
+import { AppState } from '../../../core/interfaces/state.interface';
+import { selectMovie } from '../../../core/ngrx/selectors/movies.selectors';
 import { ActivatedRoute } from '@angular/router';
-import movieDbConf from '../../../core/services/movieDbconfig.json';
-import { Movie } from './movie.interface';
+import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
+import { Movie } from '../../../core/interfaces/movie.interface';
+import { FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-movie',
@@ -21,8 +24,12 @@ export class MovieComponent implements OnInit, OnDestroy {
   movie$: Observable<Movie>;
   subscription: Subscription;
   movie: Movie;
+  ratingForm;
 
-  constructor(private store: Store<AppState>, private route: ActivatedRoute, ) { }
+  constructor(
+    private store: Store<AppState>, 
+    private route: ActivatedRoute, 
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getMovie();
@@ -33,6 +40,10 @@ export class MovieComponent implements OnInit, OnDestroy {
         this.imgSrc = movie ? movieDbConf.imgsrc300 + movie.poster_path : '';
       }
     );
+    this.ratingForm = this.formBuilder.group({
+      voteSum: 0,
+      voteCount: 0
+    });
   }
 
   getMovie(): void {

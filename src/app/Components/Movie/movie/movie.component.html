@@ -1,5 +1,10 @@
 <div class="app-movie">
     <h2>{{(movie$|async)?.title}}</h2>
-    <img *ngIf="movie" src='{{imgSrc}}' />
+    <img src='{{imgSrc}}' />
+    <form [formGroup]="ratingForm">
+        <input *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" mat-radio-button type="radio" name="rating" [value]="item" (change)="onClick(value)">
+    </form>
     <p>Release date: {{(movie$|async)?.release_date}}</p>
+    <app-comment *ngIf="movie" [movieId]="movie.id"></app-comment>
+
 </div>

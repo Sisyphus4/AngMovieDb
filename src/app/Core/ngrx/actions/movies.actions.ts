@@ -1,4 +1,7 @@
 import { createAction, props } from '@ngrx/store';
+import { GetMovieAction } from '../../interfaces/interfaces';
+import { Movie } from '../../interfaces/movie.interface';
+
 
 export const getPopularMovies = createAction(
     '[Movies Page] Load Movies',
@@ -6,18 +9,15 @@ export const getPopularMovies = createAction(
 
 export const getPopularMoviesSuccess = createAction(
     '[Movies API] Movies Loaded Success',
-    props<{ movies: []}>()
+    props<{ movies: [] }>()
 );
 
-export interface GetMovieAction{
-    id:number;
-}
 export const getMovie = createAction(
     '[Movie Page] Load Movie',
-    props<{ id: number}>(),
+    props<GetMovieAction>(),
 );
 
 export const getMovieSuccess = createAction(
     '[Movies API] Movie Loaded Success',
-    props<{ movie: any}>()
+    props<{ movie: Movie }>()
 );

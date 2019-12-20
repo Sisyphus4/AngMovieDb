@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import movieDbConf from '../../core/services/movieDbconfig.json';
+import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Movie } from '../../../core/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movie-preview',
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./movie-preview.component.css']
 })
 export class MoviePreviewComponent implements OnInit {
-  @Input() movie: any;
+  @Input() movie: Movie;
 
   imgSrc: string;
 
@@ -18,7 +19,7 @@ export class MoviePreviewComponent implements OnInit {
     this.imgSrc = movieDbConf.imgsrc185 + this.movie.poster_path;
   }
 
-  OnClick() {
+  onClick() {
     this.router.navigate(['/movie', this.movie.id])
   }
 }
