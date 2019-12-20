@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { CommentState, AppState } from '../../interfaces/state.interface';
-import { Comment } from '../../interfaces/comment.interface'
+import { Comment } from '../../interfaces/comment.interface';
 
 export const selectFeature = (state: AppState) => state.commentsReducer;
 

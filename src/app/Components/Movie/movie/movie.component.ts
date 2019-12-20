@@ -3,14 +3,16 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Subscription } from "rxjs";
 import * as MoviesActions from '../../../core/ngrx/actions/movies.actions';
+import * as RatingsActions from '../../../core/ngrx/actions/rating.actions';
 import { AppState } from '../../../core/interfaces/state.interface';
 import { selectMovie } from '../../../core/ngrx/selectors/movies.selectors';
+import { selectRating } from '../../../core/ngrx/selectors/ratings.selector';
 import { ActivatedRoute } from '@angular/router';
 import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
 import { Movie } from '../../../core/interfaces/movie.interface';
 import { FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-
+import { Rating } from 'src/app/core/interfaces/rating.interface';
 
 @Component({
   selector: 'app-movie',
@@ -22,37 +24,35 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   imgSrc: string;
   movie$: Observable<Movie>;
+  rating$: Observable<number>;
   subscription: Subscription;
   movie: Movie;
-  ratingForm;
+  rated: boolean;
 
   constructor(
-    private store: Store<AppState>, 
-    private route: ActivatedRoute, 
+    private store: Store<AppState>,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.getMovie();
+    this.store.dispatch(MoviesActions.getMovie({ id: Number(this.route.snapshot.params['id']) }));
     this.movie$ = this.store.select(state => selectMovie(state));
+    this.rating$ = this.store.select(state => selectRating(state));
     this.subscription = this.movie$.subscribe(
       (movie: Movie) => {
-        this.movie = movie;
-        this.imgSrc = movie ? movieDbConf.imgsrc300 + movie.poster_path : '';
+        if (movie) {
+          this.movie = movie;
+          this.imgSrc = movieDbConf.imgsrc300 + movie.poster_path;
+          this.store.dispatch(RatingsActions.getRatings({ id: movie.id }));
+        }
       }
     );
-    this.ratingForm = this.formBuilder.group({
-      voteSum: 0,
-      voteCount: 0
-    });
   }
 
-  getMovie(): void {
-    this.store.dispatch(MoviesActions.getMovie({ id: Number(this.route.snapshot.params['id']) }));
-  }
 
-  onClick(value) {
-    this.ratingForm.voteCount=
-    console.log(value);
+  onClick(event) {
+    this.rated = true;
+    this.store.dispatch(RatingsActions.postRating({ movieId: this.movie.id, voteSum: Number(event.target.value) }))
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

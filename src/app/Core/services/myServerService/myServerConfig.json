@@ -3,5 +3,8 @@
     "getComments" : "/getComments",
     "postComment" : "/postComment",
     "deleteComment": "/deleteComment",
-    "updateComment": "/updateComment"
+    "updateComment": "/updateComment",
+    "apiRatingRequset" : "http://localhost:3000/api/ratings",
+    "getRatings" : "/getRatings",
+    "postRatings" : "/postRatings"
 }

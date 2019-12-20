@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, exhaustMap, mapTo } from 'rxjs/operators';
-import { MyServerService } from '../../services/myServerService/comments.service/my-server.service';
+import { CommentsService } from '../../services/myServerService/comments.service/comments.service';
 import * as CommentsActions from '../actions/comments.actions';
 import { Comment } from '../../interfaces/comment.interface';
 import { GetMovieAction, DeleteAction, updateAction } from '../../interfaces/interfaces';
@@ -14,7 +14,7 @@ export class CommentsEffects {
 
   loadComments$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Load Comments'),
-    mergeMap((action: GetMovieAction) => this.MyServerService.getComments(action.id)
+    mergeMap((action: GetMovieAction) => this.CommentsService.getComments(action.id)
       .pipe(
         map(response => (CommentsActions.getCommentsSuccess({ comments: response }))),
         catchError(() => EMPTY)
@@ -24,7 +24,7 @@ export class CommentsEffects {
 
   uploadComment$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Upload Comment'),
-    mergeMap((action: Comment) => this.MyServerService.postComment(action.movieId, action.text, action.author)
+    mergeMap((action: Comment) => this.CommentsService.postComment(action.movieId, action.text, action.author)
       .pipe(
         map(response => (CommentsActions.postCommentSuccess(response))),
         catchError(() => EMPTY)
@@ -34,7 +34,7 @@ export class CommentsEffects {
 
   editComment$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Edit Comment'),
-    mergeMap((action: updateAction) => this.MyServerService.editComment(action.id, action.text)
+    mergeMap((action: updateAction) => this.CommentsService.editComment(action.id, action.text)
       .pipe(
         map(response => (CommentsActions.editCommentSuccess(response))),
         catchError(() => EMPTY)
@@ -44,7 +44,7 @@ export class CommentsEffects {
 
   deleteComment$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Delete Comment'),
-    mergeMap((action: DeleteAction) => this.MyServerService.deleteComment(action.id)
+    mergeMap((action: DeleteAction) => this.CommentsService.deleteComment(action.id)
       .pipe(
         map(response => CommentsActions.deleteCommentSuccess({ id: action.id })),
         catchError(() => EMPTY)
@@ -54,6 +54,6 @@ export class CommentsEffects {
 
   constructor(
     private actions$: Actions,
-    private MyServerService: MyServerService
+    private CommentsService: CommentsService
   ) { }
 }

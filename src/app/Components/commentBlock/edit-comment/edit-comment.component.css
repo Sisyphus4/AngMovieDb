@@ -3,3 +3,6 @@
     display: flex;
     flex-direction: column;
 }
+.post-button{
+    width: 70px;
+}

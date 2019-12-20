@@ -10,7 +10,7 @@ import { Comment } from '../../../interfaces/comment.interface'
   providedIn: 'root'
 })
 
-export class MyServerService {
+export class CommentsService {
 
   constructor(
     private http: HttpClient,
