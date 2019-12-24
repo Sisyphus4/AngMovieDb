@@ -13,7 +13,7 @@ export class MoviePreviewComponent implements OnInit {
 
   imgSrc: string;
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     this.imgSrc = movieDbConf.imgsrc185 + this.movie.poster_path;

@@ -33,6 +33,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NavBarComponent } from './components/navBlock/nav-bar/nav-bar.component';
+import { NotFoundComponent } from './components/navBlock/not-found/not-found.component';
 
 
 const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputModule];
@@ -45,7 +47,9 @@ const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputMod
     MovieComponent,
     CommentComponent,
     PostCommentComponent,
-    EditCommentComponent
+    EditCommentComponent,
+    NavBarComponent,
+    NotFoundComponent
   ],
   imports: [
     ...mat_modules,

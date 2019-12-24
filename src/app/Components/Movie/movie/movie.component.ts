@@ -10,9 +10,7 @@ import { selectRating } from '../../../core/ngrx/selectors/ratings.selector';
 import { ActivatedRoute } from '@angular/router';
 import movieDbConf from '../../../core/services/movieDbService/movieDbconfig.json';
 import { Movie } from '../../../core/interfaces/movie.interface';
-import { FormControl } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Rating } from 'src/app/core/interfaces/rating.interface';
+
 
 @Component({
   selector: 'app-movie',
@@ -31,8 +29,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.store.dispatch(MoviesActions.getMovie({ id: Number(this.route.snapshot.params['id']) }));
