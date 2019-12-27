@@ -36,7 +36,6 @@ h1, p {
   .OneOfMovies img, .OneOfComparedMovies img{
     width: 185px;
     height: 278px;
-    cursor: pointer;
   }
   
   .TheMovie{

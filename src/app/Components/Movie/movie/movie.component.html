@@ -2,17 +2,16 @@
     <h2>{{(movie$|async)?.title}}</h2>
     <img src='{{imgSrc}}' />
     <label>
-        Average Vote:  {{rating$ | async| number:'1.0-2'}}
+        Average Vote: {{rating$ | async| number:'1.0-2'}}
     </label>
-    <form>
+    <form *ngIf="notRated">
         Rate:
         <label *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
             {{item}}
             <input mat-radio-button type="checkbox" name="rating" [value]="item" (change)="onClick($event)"
-                [attr.disabled]="rated" class="radio">
+                 class="radio">
         </label>
     </form>
     <p>Release date: {{(movie$|async)?.release_date}}</p>
     <app-comment *ngIf="movie" [movieId]="movie.id"></app-comment>
-
 </div>

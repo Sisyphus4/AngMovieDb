@@ -24,7 +24,7 @@ export class CommentsEffects {
 
   uploadComment$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Upload Comment'),
-    mergeMap((action: Comment) => this.CommentsService.postComment(action.movieId, action.text, action.author)
+    mergeMap((action: Comment) => this.CommentsService.postComment(action.movieId, action.text)
       .pipe(
         map(response => (CommentsActions.postCommentSuccess(response))),
         catchError(() => EMPTY)

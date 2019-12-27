@@ -15,24 +15,29 @@ export class CommentsService {
   constructor(
     private http: HttpClient,
   ) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    })
+  };
 
-  getComments(id: number): Observable<Comment[]> {
-    let request = `${myServerConfig.apiCommentRequset}/${id}${myServerConfig.getComments}`;
+  getComments(moiveId: number): Observable<Comment[]> {
+    let request = `${myServerConfig.apiCommentRequset}/${moiveId}`;
     return this.http.get<Comment[]>(request);
   }
 
-  postComment(movieId: number, text: string, author: string): Observable<Comment> {
-    let request = `${myServerConfig.apiCommentRequset}/${movieId}${myServerConfig.postComment}`;
-    return this.http.post<Comment>(request, { text, author });
+  postComment(movieId: number, text: string): Observable<Comment> {
+    let request = `${myServerConfig.apiCommentRequset}/${movieId}`;
+    return this.http.post<Comment>(request, { text }, this.httpOptions);
   }
 
   editComment(id: string, text: string): Observable<Comment> {
-    let request = `${myServerConfig.apiCommentRequset}${myServerConfig.updateComment}`;
-    return this.http.put<Comment>(request, { text, id });
+    let request = `${myServerConfig.apiCommentRequset}/${id}`;
+    return this.http.put<Comment>(request, { text }, this.httpOptions);
   }
 
   deleteComment(id: string): Observable<JSON> {
-    let request = `${myServerConfig.apiCommentRequset}${myServerConfig.deleteComment}/${id}`;
-    return this.http.delete<JSON>(request);
+    let request = `${myServerConfig.apiCommentRequset}/${id}`;
+    return this.http.delete<JSON>(request, this.httpOptions);
   }
 }

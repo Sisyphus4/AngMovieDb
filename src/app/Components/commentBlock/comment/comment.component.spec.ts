@@ -9,7 +9,7 @@ fdescribe('CommentComponent', () => {
   let component: CommentComponent;
   let fixture: ComponentFixture<CommentComponent>;
   let store: MockStore<AppState>;
-  const initialState = {  };
+  const initialState = { loggedIn: false };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ fdescribe('CommentComponent', () => {
     fixture = TestBed.createComponent(CommentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    //store = TestBed.get<AppState>(store);
+    store = TestBed.get(Store);
   });
 
   it('#clicked() should toggle #isOn', () => {

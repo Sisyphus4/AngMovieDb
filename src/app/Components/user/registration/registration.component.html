@@ -1,0 +1,11 @@
+<form [formGroup]="registrationForm" class="registration" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput placeholder="Login"  formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Password"  formControlName="password">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+</form>

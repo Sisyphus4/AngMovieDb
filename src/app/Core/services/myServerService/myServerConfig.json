@@ -1,10 +1,6 @@
 {
     "apiCommentRequset" : "http://localhost:3000/api/comments",
-    "getComments" : "/getComments",
-    "postComment" : "/postComment",
-    "deleteComment": "/deleteComment",
-    "updateComment": "/updateComment",
     "apiRatingRequset" : "http://localhost:3000/api/ratings",
-    "getRatings" : "/getRatings",
-    "postRatings" : "/postRatings"
+    "apiUserRequset" : "http://localhost:3000/api/users",
+    "loginUser" : "/login"
 }

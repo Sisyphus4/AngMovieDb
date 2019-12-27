@@ -16,7 +16,6 @@ import { tap } from 'rxjs/operators';
 })
 export class PostCommentComponent implements OnInit, OnDestroy {
 
-  inputAuthor = new FormControl('');
   inputComment = new FormControl('');
   subscription: Subscription;
   @Input() movieId: number;
@@ -31,14 +30,12 @@ export class PostCommentComponent implements OnInit, OnDestroy {
       ofType(CommentsActions.postCommentSuccess),
       tap(() => {
         this.inputComment.setValue('');
-        this.inputAuthor.setValue('');
       })
     ).subscribe();
   }
 
   onClick() {
     this.comment.text = this.inputComment.value;
-    this.comment.author = this.inputAuthor.value;
     this.comment.movieId = this.movieId;
     this.store.dispatch(CommentsActions.postComment(this.comment));
   }

@@ -16,13 +16,19 @@ export class RatingsService {
     private http: HttpClient,
   ) { }
 
-  getRatings(id: number): Observable<Rating> {
-    let request = `${myServerConfig.apiRatingRequset}/${id}${myServerConfig.getRatings}`;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    })
+  };
+
+  getRatings(movieId: number): Observable<Rating> {
+    let request = `${myServerConfig.apiRatingRequset}/${movieId}`;
     return this.http.get<Rating>(request);
   }
 
   postRating(movieId: number, voteSum: number): Observable<Rating> {
-    let request = `${myServerConfig.apiRatingRequset}/${movieId}${myServerConfig.postRatings}`;
-    return this.http.post<Rating>(request, { voteSum });
+    let request = `${myServerConfig.apiRatingRequset}/${movieId}`;
+    return this.http.post<Rating>(request, { voteSum }, this.httpOptions);
   }
 }

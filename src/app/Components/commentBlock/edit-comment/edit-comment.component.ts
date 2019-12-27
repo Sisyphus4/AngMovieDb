@@ -17,30 +17,29 @@ import { tap } from 'rxjs/operators';
 export class EditCommentComponent implements OnInit, OnDestroy {
   inputComment = new FormControl('');
   subscription: Subscription;
-  @Input() movieId: number;
-  @Input() author: string;
-  @Input() text: string;
-  @Input() commentId: string;
-  comment = {} as Comment;
+  @Input() comment: Comment;
   @Output() update = new EventEmitter<boolean>();
 
   constructor(private store: Store<AppState>, private updates$: Actions) { }
 
   ngOnInit() {
-    this.inputComment.setValue(this.text);
+    this.inputComment.setValue(this.comment.text);
     this.subscription = this.updates$
       .pipe(
         ofType(CommentsActions.postCommentSuccess),
         tap(() => {
-          this.inputComment.setValue('');
+          this.update.emit(true);
         })
       ).subscribe();
   }
 
   onClick() {
     this.comment.text = this.inputComment.value;
-    this.comment.id = this.commentId;
     this.store.dispatch(CommentsActions.editComment(this.comment));
+    this.update.emit(true);
+  }
+
+  onCancel() {
     this.update.emit(true);
   }
 

@@ -1,3 +1,9 @@
-<div class="NavBar">
-    <a class="NavBar-Link" routerLink="/home"  routerLinkActive="NavBar-Link-active">Home</a>
+<div class="nav-bar">
+    <a class="nav-bar__link" routerLink="/home" routerLinkActive="nav-bar__link_active">Home</a>
+    <a class="nav-bar__link" routerLink="/registration" routerLinkActive="nav-bar__link_active">Sign Up</a>
+    <button class="nav-bar__link" (click)='openDialog()'>Sing In</button>
+    <p>{{(user$|async)?.username}}</p>
+    <ng-container *ngIf="(user$|async)?.username">
+        <button class="nav-bar__link" (click)='onSignOut()'>Sign out</button>
+    </ng-container>
 </div>

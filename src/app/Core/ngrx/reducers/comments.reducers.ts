@@ -8,7 +8,7 @@ export const initialState: CommentState = {
 };
 
 
-const _moviesReducer = createReducer(
+const _commentsReducer = createReducer(
     initialState,
     on(CommentsActions.getCommentsSuccess, (state, payload) => ({ ...state, comments: payload.comments })),
     on(CommentsActions.postCommentSuccess, (state, payload) => ({ ...state, comments: [...state.comments, payload] })),
@@ -30,5 +30,5 @@ const _moviesReducer = createReducer(
 );
 
 export function commentsReducer(state: CommentState | undefined, action: Action) {
-    return _moviesReducer(state, action);
+    return _commentsReducer(state, action);
 }
