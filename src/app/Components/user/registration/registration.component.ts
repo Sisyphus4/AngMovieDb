@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppState } from '../../../core/interfaces/state.interface';
 import { Store, select } from '@ngrx/store';
 import * as AuthenticationActions from '../../../core/ngrx/actions/authentication.actions';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { selectError } from '../../../core/ngrx/selectors/authentication.selectors';
 
 @Component({
   selector: 'app-registration',
@@ -19,17 +21,20 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   registrationForm: FormGroup;
+  error$: Observable<string>;
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
       username: [''],
       password: [''],
-    });
+      recaptcha: '',
+    }, Validators.required);
+    this.error$ = this.store.select(state => selectError(state))
   }
 
   onSubmit() {
-    const { username, password } = this.registrationForm.value;
-    this.store.dispatch(AuthenticationActions.registerUser({ username, password }));
-    this.router.navigate(['/home'])
+    const { username, password, recaptcha } = this.registrationForm.value;
+    this.store.dispatch(AuthenticationActions.registerUser({ username, password, recaptcha }));
+    //this.router.navigate(['/home']);
   }
 }

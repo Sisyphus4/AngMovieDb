@@ -1,14 +1,15 @@
 import { createAction, props } from '@ngrx/store';
-import { Login, User } from '../../interfaces/authentication.interface';
+import { Login, User, Register } from '../../interfaces/authentication.interface';
+import { UserState } from '../../interfaces/state.interface';
 
 export const registerUser = createAction(
     '[My API] Register user',
-    props<Login>(),
+    props<Register>(),
 );
 
-export const registerUserSuccess = createAction(
-    '[My API] Register user Success',
-    props<User>()
+export const registerUserFailure = createAction(
+    '[My API] Register user failure',
+    props<{ error: string }>(),
 );
 
 export const loginUser = createAction(
@@ -18,11 +19,16 @@ export const loginUser = createAction(
 
 export const loginUserSuccess = createAction(
     '[My API] Login user Success',
-    props<User>()
+    props<UserState>()
 );
 
 export const getUser = createAction(
     '[My API] get user',
+);
+
+export const getUserSuccess = createAction(
+    '[My API] get user success',
+    props<User>()
 );
 
 export const updateUserRatedMovies = createAction(

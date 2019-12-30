@@ -40,6 +40,7 @@ import { NavBarComponent } from './components/navBlock/nav-bar/nav-bar.component
 import { NotFoundComponent } from './components/navBlock/not-found/not-found.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AuthenticationComponent } from './components/user/authentication/authentication.component';
+import { RecaptchaModule, RecaptchaFormsModule  } from 'ng-recaptcha';
 
 
 const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputModule, MatDialogModule];
@@ -82,6 +83,8 @@ const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputMod
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   entryComponents: [
     AuthenticationComponent

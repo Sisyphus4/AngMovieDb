@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import myServerConfig from '../myServerConfig.json';
-import { User, Response } from '../../../interfaces/authentication.interface'
-
+import { User } from '../../../interfaces/authentication.interface'
+import { Store, select } from '@ngrx/store';
+import { AppState, UserState } from '../../../interfaces/state.interface';
+import { selectToken } from '../../../ngrx/selectors/authentication.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,18 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-  ) { }
+    private store: Store<AppState>
+  ) {
+    this.token$ = this.store.select(state => selectToken(state));
+    this.token$.subscribe(token => {
+      if (token) {
+        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', `Bearer ${token}`);
+      }
+    })
+  }
+
+  token$: Observable<string>;
+  token: string;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,14 +35,14 @@ export class AuthenticationService {
     })
   };
 
-  registerUser(username: string, password: string): Observable<User> {
+  registerUser(username: string, password: string, recaptcha: string): Observable<UserState> {
     let request = `${myServerConfig.apiUserRequset}`;
-    return this.http.post<User>(request, { username, password });
+    return this.http.post<UserState>(request, { username, password, recaptcha });
   }
 
-  loginUser(username: string, password: string): Observable<Response> {
+  loginUser(username: string, password: string): Observable<UserState> {
     let request = `${myServerConfig.apiUserRequset}${myServerConfig.loginUser}`;
-    return this.http.post<Response>(request, { username, password });
+    return this.http.post<UserState>(request, { username, password });
   }
 
   getUser(): Observable<User> {

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { map, mergeMap, catchError, exhaustMap, mapTo } from 'rxjs/operators';
 import { AuthenticationService } from '../../services/myServerService/authentication.service/authentication.service';
 import * as AuthenticationActions from '../actions/authentication.actions';
-import { Login, User } from '../../interfaces/authentication.interface';
+import { Login, User, Register } from '../../interfaces/authentication.interface';
 import { tap } from 'rxjs/operators';
 
 
@@ -14,10 +14,15 @@ export class AuthenticationEffects {
 
   registerUser$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Register user'),
-    mergeMap((action: Login) => this.AuthenticationService.registerUser(action.username, action.password)
+    mergeMap((action: Register) => this.AuthenticationService.registerUser(action.username, action.password, action.recaptcha)
       .pipe(
-        map(response => (AuthenticationActions.registerUserSuccess({ ...response }))),
-        catchError(() => EMPTY)
+        map(response => {
+          window.localStorage.setItem('token', response.token);
+          return AuthenticationActions.loginUserSuccess({ ...response });
+        }),
+        catchError(err => {
+          return of(AuthenticationActions.registerUserFailure({ error: err.error.error }));
+        })
       ))
   )
   );
@@ -39,7 +44,7 @@ export class AuthenticationEffects {
     ofType('[My API] get user'),
     mergeMap(() => this.AuthenticationService.getUser()
       .pipe(
-        map(response => AuthenticationActions.loginUserSuccess({ ...response })),
+        map(response => AuthenticationActions.getUserSuccess({ ...response })),
         catchError(() => EMPTY)
       ))
   )

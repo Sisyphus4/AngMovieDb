@@ -63,7 +63,7 @@ export class MovieComponent implements OnInit, OnDestroy {
           this.notRated = !user.ratedMovies.find(id => id == this.movie.id);
         }
         else {
-          if (user.username) {
+          if (user) {
             this.notRated = true;
           }
         }

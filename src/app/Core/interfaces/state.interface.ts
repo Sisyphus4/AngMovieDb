@@ -7,7 +7,7 @@ export interface AppState {
     moviesReducer: MovieState;
     commentsReducer: CommentState;
     ratingsReducer: Rating;
-    authenticationReducer : User;
+    authenticationReducer : UserState;
 }
 export interface MovieState {
     movies: [];
@@ -16,4 +16,10 @@ export interface MovieState {
 
 export interface CommentState {
     comments: Comment[];
+}
+
+export interface UserState{
+    user:User;
+    token: string;
+    error:string;
 }

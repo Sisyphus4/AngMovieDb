@@ -11,7 +11,7 @@ describe('CommentsService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    commentsService = new CommentsService(<any>httpClientSpy);
+    //commentsService = new CommentsService(<any>httpClientSpy);
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
     })
