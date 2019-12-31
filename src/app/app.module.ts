@@ -41,6 +41,7 @@ import { NotFoundComponent } from './components/navBlock/not-found/not-found.com
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AuthenticationComponent } from './components/user/authentication/authentication.component';
 import { RecaptchaModule, RecaptchaFormsModule  } from 'ng-recaptcha';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputModule, MatDialogModule];
@@ -58,6 +59,7 @@ const mat_modules = [MatButtonModule, MatCardModule, MatRadioModule, MatInputMod
     NotFoundComponent,
     RegistrationComponent,
     AuthenticationComponent,
+    SpinnerComponent,
   ],
   imports: [
     ...mat_modules,

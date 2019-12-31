@@ -16,6 +16,12 @@ const localAuthenticationReducer = createReducer(
         token: payload.token,
         error: ''
     })),
+    on(AuthenticationActions.registerUserSuccess, (state, payload) => ({
+        ...state,
+        user: payload.user,
+        token: payload.token,
+        error: ''
+    })),
     on(AuthenticationActions.updateUserRatedMovies, (state, payload) => ({
         ...state, user: { ...state.user, ratedMovies: [...state.user.ratedMovies, payload.movieId.toString()] }
     })),

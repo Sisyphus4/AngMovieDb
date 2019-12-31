@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as CommentsActions from '../../../core/ngrx/actions/comments.actions';
 import { AppState } from '../../../core/interfaces/state.interface';
 import { Comment } from '../../../core/interfaces/comment.interface';

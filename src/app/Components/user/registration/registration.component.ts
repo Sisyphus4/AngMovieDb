@@ -25,8 +25,8 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      username: [''],
-      password: [''],
+      username: ['', Validators.minLength(3)],
+      password: ['', Validators.minLength(3)],
       recaptcha: '',
     }, Validators.required);
     this.error$ = this.store.select(state => selectError(state));

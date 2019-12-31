@@ -17,10 +17,10 @@ export class AuthenticationEffects {
       .pipe(
         map(response => {
           window.localStorage.setItem('token', response.token);
-          return AuthenticationActions.loginUserSuccess({ ...response });
+          return AuthenticationActions.registerUserSuccess({ ...response });
         }),
         catchError(err => {
-          return of(AuthenticationActions.registerUserFailure({ error: err.error.error }));
+          return of(AuthenticationActions.registerUserFailure({ error: err.error.message }));
         })
       ))
   )
@@ -34,7 +34,9 @@ export class AuthenticationEffects {
           window.localStorage.setItem('token', response.token);
           return AuthenticationActions.loginUserSuccess({ ...response });
         }),
-        catchError(() => EMPTY)
+        catchError(err => {
+          return of(AuthenticationActions.registerUserFailure({ error: err.error.message }));
+        })
       ))
   )
   );

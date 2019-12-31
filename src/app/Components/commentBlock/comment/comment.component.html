@@ -1,7 +1,6 @@
 <div class="app-home">
     <div *ngFor="let comment of comments$ | async" class="comment">
-        <app-edit-comment *ngIf="editingId===comment.id; else elseBlock" [comment]='comment'
-            (update)='onUpdate()'>
+        <app-edit-comment *ngIf="editingId===comment.id; else elseBlock" [comment]='comment' (update)='onUpdate()'>
         </app-edit-comment>
         <ng-template #elseBlock>
             <p>Author: {{comment.author}}</p>
@@ -12,12 +11,12 @@
             <ng-template #updateDate>
                 <p>Updated at {{comment.updatedAt | date:'medium'}}</p>
             </ng-template>
-            <ng-container *ngIf="(user$|async)?.userId==comment.userId">
+            <ng-container *ngIf="(user$|async)?.userId===comment.userId">
                 <button mat-raised-button (click)='onDelete(comment.id)'>Delete</button>
                 <button mat-raised-button (click)='onEdit(comment.id)'>Edit</button>
             </ng-container>
         </ng-template>
     </div>
-    <app-post-comment [movieId]="movieId"></app-post-comment>
+    <app-post-comment *ngIf="(user$|async)" [movieId]="movieId"></app-post-comment>
 
 </div>

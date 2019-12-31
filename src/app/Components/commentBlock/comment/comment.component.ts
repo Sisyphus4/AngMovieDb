@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as CommentsActions from '../../../core/ngrx/actions/comments.actions';
 import { AppState } from '../../../core/interfaces/state.interface';
@@ -36,8 +36,6 @@ export class CommentComponent implements OnInit {
   }
 
   onEdit(id: string) {
-    this.editingId === id
-      ? this.editingId = ''
-      : this.editingId = id;
+    this.editingId = id;
   }
 }

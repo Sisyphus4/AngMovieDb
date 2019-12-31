@@ -17,11 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.getMovies();
+    this.store.dispatch(MoviesActions.getPopularMovies());
     this.movies$ = this.store.select(state => selectMovies(state));
   }
 
-  getMovies(): void {
-    this.store.dispatch(MoviesActions.getPopularMovies());
-  }
 }

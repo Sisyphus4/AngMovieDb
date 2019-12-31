@@ -1,4 +1,4 @@
-<div class="app-movie">
+<div *ngIf="!(loading$|async); else loadingBlock" class="app-movie">
     <h2>{{(movie$|async)?.title}}</h2>
     <img src='{{imgSrc}}' />
     <label>
@@ -18,3 +18,6 @@
     <p>Release date: {{(movie$|async)?.release_date}}</p>
     <app-comment *ngIf="movie" [movieId]="movie.id"></app-comment>
 </div>
+<ng-template #loadingBlock>
+    <app-spinner></app-spinner>
+</ng-template>

@@ -12,6 +12,7 @@ export interface AppState {
 export interface MovieState {
     movies: [];
     movie: Movie;
+    loading: boolean;
 }
 
 export interface CommentState {

@@ -1,12 +1,13 @@
 <form [formGroup]="registrationForm" class="authentication" (ngSubmit)="onSubmit()">
+    <p>{{error$|async}}</p>
     <mat-form-field>
-        <input matInput placeholder="Login" formControlName="username">
+        <input required matInput placeholder="Login" formControlName="username">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Password" formControlName="password">
+        <input required matInput type="password" placeholder="Password" formControlName="password">
     </mat-form-field>
     <div mat-dialog-actions>
-        <button type="submit" mat-button>Submit</button>
+        <button type="submit" [disabled]="!registrationForm.valid" mat-button>Submit</button>
         <button type="button" mat-button mat-dialog-close>No Thanks</button>
     </div>
 </form>

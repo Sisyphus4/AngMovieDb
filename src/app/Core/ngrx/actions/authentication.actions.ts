@@ -12,6 +12,11 @@ export const registerUserFailure = createAction(
     props<{ error: string }>(),
 );
 
+export const registerUserSuccess = createAction(
+    '[My API] Login user Success',
+    props<UserState>()
+);
+
 export const loginUser = createAction(
     '[My API] Login user',
     props<Login>(),

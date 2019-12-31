@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppState } from '../../../core/interfaces/state.interface';
 import { Store, select } from '@ngrx/store';
 import * as AuthenticationActions from '../../../core/ngrx/actions/authentication.actions';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { selectError } from 'src/app/core/ngrx/selectors/authentication.selectors';
 
 @Component({
   selector: 'app-authentication',
@@ -12,22 +13,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(private store: Store<AppState>,
-              private fb: FormBuilder,
-              private dialogRef: MatDialogRef<AuthenticationComponent>) { }
+  constructor(private store: Store<AppState>, private fb: FormBuilder) { }
 
   registrationForm: FormGroup;
+  error$: Observable<string>;
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      username: [''],
-      password: [''],
-    });
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(3)]],
+    }, [Validators.required]);
+    this.error$ = this.store.select(state => selectError(state));
   }
 
   onSubmit() {
     const { username, password } = this.registrationForm.value;
     this.store.dispatch(AuthenticationActions.loginUser({ username, password }));
-    this.dialogRef.close();
   }
 }

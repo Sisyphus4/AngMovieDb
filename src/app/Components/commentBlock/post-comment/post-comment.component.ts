@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as CommentsActions from '../../../core/ngrx/actions/comments.actions';
 import { AppState } from '../../../core/interfaces/state.interface';
@@ -16,7 +16,7 @@ import { tap } from 'rxjs/operators';
 })
 export class PostCommentComponent implements OnInit, OnDestroy {
 
-  inputComment = new FormControl('');
+  inputComment = new FormControl('', [Validators.required]);
   subscription: Subscription;
   @Input() movieId: number;
   comment = {} as Comment;
@@ -25,12 +25,12 @@ export class PostCommentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.updates$
-    .pipe(
-      ofType(CommentsActions.postCommentSuccess),
-      tap(() => {
-        this.inputComment.setValue('');
-      })
-    ).subscribe();
+      .pipe(
+        ofType(CommentsActions.postCommentSuccess),
+        tap(() => {
+          this.inputComment.setValue('');
+        })
+      ).subscribe();
   }
 
   onClick() {
