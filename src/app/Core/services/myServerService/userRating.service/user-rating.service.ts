@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import myServerConfig from '../myServerConfig.json';
-import { Comment } from '../../../interfaces/comment.interface';
+import { Rating, UserRating } from '../../../interfaces/rating.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../interfaces/state.interface';
 import { selectToken } from '../../../ngrx/selectors/authentication.selectors';
@@ -11,7 +11,7 @@ import { selectToken } from '../../../ngrx/selectors/authentication.selectors';
   providedIn: 'root'
 })
 
-export class CommentsService {
+export class UserRatingService {
 
   constructor(
     private http: HttpClient,
@@ -34,23 +34,13 @@ export class CommentsService {
     })
   };
 
-  getComments(moiveId: number): Observable<Comment[]> {
-    const request = `${myServerConfig.apiCommentRequset}/${moiveId}`;
-    return this.http.get<Comment[]>(request);
+  getUserRating(movieId: number): Observable<Rating> {
+    const request = `${myServerConfig.apiUserRatingRequset}/${movieId}`;
+    return this.http.get<Rating>(request, this.httpOptions);
   }
 
-  postComment(movieId: number, text: string): Observable<Comment> {
-    const request = `${myServerConfig.apiCommentRequset}/${movieId}`;
-    return this.http.post<Comment>(request, { text }, this.httpOptions);
-  }
-
-  editComment(id: string, text: string): Observable<Comment> {
-    const request = `${myServerConfig.apiCommentRequset}/${id}`;
-    return this.http.put<Comment>(request, { text }, this.httpOptions);
-  }
-
-  deleteComment(id: string): Observable<JSON> {
-    const request = `${myServerConfig.apiCommentRequset}/${id}`;
-    return this.http.delete<JSON>(request, this.httpOptions);
+  postUserRating(movieId: number, voteValue: number): Observable<Rating> {
+    const request = `${myServerConfig.apiUserRatingRequset}/${movieId}`;
+    return this.http.post<Rating>(request, { voteValue }, this.httpOptions);
   }
 }

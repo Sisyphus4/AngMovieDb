@@ -36,8 +36,8 @@ describe('MoviePreviewComponent', () => {
 
     component.movie = expectedMovie;
     fixture.detectChanges();
-    let movieCard = fixture.debugElement.query(By.css('.app-movie-preview'));
-    let movieEl = movieCard.nativeElement;
+    const movieCard = fixture.debugElement.query(By.css('.app-movie-preview'));
+    const movieEl = movieCard.nativeElement;
     const expectedRealeaseDate = expectedMovie.release_date;
     expect(movieEl.textContent).toContain(expectedRealeaseDate);
   });

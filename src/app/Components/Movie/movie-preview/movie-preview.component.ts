@@ -20,6 +20,6 @@ export class MoviePreviewComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/movie', this.movie.id])
+    this.router.navigate(['/movie', this.movie.id]);
   }
 }

@@ -16,7 +16,7 @@ import { User } from 'src/app/core/interfaces/authentication.interface';
 export class CommentComponent implements OnInit {
   @Input() movieId: number;
 
-  user$: Observable<User>
+  user$: Observable<User>;
   comments$: Observable<Comment[]>;
   editingId: string;
 
@@ -28,7 +28,7 @@ export class CommentComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    this.store.dispatch(CommentsActions.deleteComment({ id: id }));
+    this.store.dispatch(CommentsActions.deleteComment({ id }));
   }
 
   onUpdate() {

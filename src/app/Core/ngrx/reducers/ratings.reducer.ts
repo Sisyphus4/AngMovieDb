@@ -1,18 +1,21 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as RatingsActions from '../actions/rating.actions';
-import { Rating } from '../../interfaces/rating.interface';
+import { RatingState } from '../../interfaces/state.interface';
 
-export const initialState: Rating = {
-    rating:0
+export const initialState: RatingState = {
+    averageRating: 0,
+    userRating: 0,
 };
 
 
-const _ratingsReducer = createReducer(
+const localRatingsReducer = createReducer(
     initialState,
-    on(RatingsActions.getRatingsSuccess, (state, payload) => ({ ...state, ...payload })),
-    on(RatingsActions.postRatingSuccess, (state, payload) => ({ ...state, ...payload })),
+    on(RatingsActions.getRatingsSuccess, (state, payload) => ({ ...state, averageRating: payload.rating })),
+    on(RatingsActions.postRatingSuccess, (state, payload) => ({ ...state, averageRating: payload.rating })),
+    on(RatingsActions.getUserRatingSuccess, (state, payload) => ({ ...state, userRating: payload.rating })),
+    on(RatingsActions.postUserRatingSuccess, (state, payload) => ({ ...state, userRating: payload.rating })),
 );
 
-export function ratingsReducer(state: Rating | undefined, action: Action) {
-    return _ratingsReducer(state, action);
+export function ratingsReducer(state: RatingState | undefined, action: Action) {
+    return localRatingsReducer(state, action);
 }

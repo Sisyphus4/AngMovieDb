@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import myServerConfig from '../myServerConfig.json';
-import { Rating } from '../../../interfaces/rating.interface'
-import { Store, select } from '@ngrx/store';
+import { Rating } from '../../../interfaces/rating.interface';
+import { Store } from '@ngrx/store';
 import { AppState } from '../../../interfaces/state.interface';
 import { selectToken } from '../../../ngrx/selectors/authentication.selectors';
 
@@ -23,7 +22,7 @@ export class RatingsService {
       if (token) {
         this.httpOptions.headers = this.httpOptions.headers.set('Authorization', `Bearer ${token}`);
       }
-    })
+    });
   }
 
   token$: Observable<string>;
@@ -31,17 +30,17 @@ export class RatingsService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     })
   };
 
   getRatings(movieId: number): Observable<Rating> {
-    let request = `${myServerConfig.apiRatingRequset}/${movieId}`;
+    const request = `${myServerConfig.apiRatingRequset}/${movieId}`;
     return this.http.get<Rating>(request);
   }
 
-  postRating(movieId: number, voteSum: number): Observable<Rating> {
-    let request = `${myServerConfig.apiRatingRequset}/${movieId}`;
-    return this.http.post<Rating>(request, { voteSum }, this.httpOptions);
+  postRating(movieId: number, voteValue: number): Observable<Rating> {
+    const request = `${myServerConfig.apiRatingRequset}/${movieId}`;
+    return this.http.post<Rating>(request, { voteValue }, this.httpOptions);
   }
 }

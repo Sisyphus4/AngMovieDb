@@ -5,7 +5,7 @@ import * as CommentsActions from '../../../core/ngrx/actions/comments.actions';
 import { AppState } from '../../../core/interfaces/state.interface';
 import { Comment } from '../../../core/interfaces/comment.interface';
 import { Actions, ofType } from '@ngrx/effects';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({

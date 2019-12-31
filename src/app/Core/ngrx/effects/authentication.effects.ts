@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
-import { map, mergeMap, catchError, exhaustMap, mapTo } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../../services/myServerService/authentication.service/authentication.service';
 import * as AuthenticationActions from '../actions/authentication.actions';
-import { Login, User, Register } from '../../interfaces/authentication.interface';
-import { tap } from 'rxjs/operators';
+import { Login, Register } from '../../interfaces/authentication.interface';
 
 
 
@@ -14,7 +13,7 @@ export class AuthenticationEffects {
 
   registerUser$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Register user'),
-    mergeMap((action: Register) => this.AuthenticationService.registerUser(action.username, action.password, action.recaptcha)
+    mergeMap((action: Register) => this.authenticationService.registerUser(action.username, action.password, action.recaptcha)
       .pipe(
         map(response => {
           window.localStorage.setItem('token', response.token);
@@ -29,7 +28,7 @@ export class AuthenticationEffects {
 
   loginUser$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] Login user'),
-    mergeMap((action: Login) => this.AuthenticationService.loginUser(action.username, action.password)
+    mergeMap((action: Login) => this.authenticationService.loginUser(action.username, action.password)
       .pipe(
         map(response => {
           window.localStorage.setItem('token', response.token);
@@ -42,7 +41,7 @@ export class AuthenticationEffects {
 
   getUser$ = createEffect(() => this.actions$.pipe(
     ofType('[My API] get user'),
-    mergeMap(() => this.AuthenticationService.getUser()
+    mergeMap(() => this.authenticationService.getUser()
       .pipe(
         map(response => AuthenticationActions.getUserSuccess({ ...response })),
         catchError(() => EMPTY)
@@ -52,6 +51,6 @@ export class AuthenticationEffects {
 
   constructor(
     private actions$: Actions,
-    private AuthenticationService: AuthenticationService
+    private authenticationService: AuthenticationService
   ) { }
 }

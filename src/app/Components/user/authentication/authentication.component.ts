@@ -13,10 +13,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AuthenticationComponent implements OnInit {
 
   constructor(private store: Store<AppState>,
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<AuthenticationComponent>) { }
+              private fb: FormBuilder,
+              private dialogRef: MatDialogRef<AuthenticationComponent>) { }
 
-    registrationForm: FormGroup;
+  registrationForm: FormGroup;
 
   ngOnInit() {
     this.registrationForm = this.fb.group({

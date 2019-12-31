@@ -4,12 +4,15 @@
     <label>
         Average Vote: {{rating$ | async| number:'1.0-2'}}
     </label>
+    <label *ngIf="userRating$|async">
+        Your Vote: {{userRating$ | async}}
+    </label>
     <form *ngIf="notRated">
         Rate:
         <label *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
             {{item}}
             <input mat-radio-button type="checkbox" name="rating" [value]="item" (change)="onClick($event)"
-                 class="radio">
+                class="radio">
         </label>
     </form>
     <p>Release date: {{(movie$|async)?.release_date}}</p>

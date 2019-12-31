@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { GetMovieAction, DeleteAction } from '../../interfaces/interfaces';
-import { Rating, postedRating } from '../../interfaces/rating.interface';
+import { GetMovieAction } from '../../interfaces/interfaces';
+import { Rating, PostedRating, UserRating } from '../../interfaces/rating.interface';
 
 export const getRatings = createAction(
     '[My API] Load Ratings',
@@ -14,10 +14,30 @@ export const getRatingsSuccess = createAction(
 
 export const postRating = createAction(
     '[My API] Upload Rating',
-    props<postedRating>(),
+    props<PostedRating>(),
 );
 
 export const postRatingSuccess = createAction(
     '[My API] Upload Rating Success',
+    props<Rating>(),
+);
+
+export const getUserRating = createAction(
+    '[My API] Load User Rating',
+    props<GetMovieAction>(),
+);
+
+export const getUserRatingSuccess = createAction(
+    '[My API] User Rating Loaded Success',
+    props<Rating>()
+);
+
+export const postUserRating = createAction(
+    '[My API] Upload User Rating',
+    props<PostedRating>(),
+);
+
+export const postUserRatingSuccess = createAction(
+    '[My API] Upload User Rating Success',
     props<Rating>(),
 );

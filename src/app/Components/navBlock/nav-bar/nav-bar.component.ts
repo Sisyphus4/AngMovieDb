@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.store.select(state => selectUser(state));
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
       this.store.dispatch(AuthenticationActions.getUser());
     }

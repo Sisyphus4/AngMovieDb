@@ -6,17 +6,16 @@ export const selectFeature = (state: AppState) => state.commentsReducer;
 
 export const selectComments = createSelector(
   selectFeature,
-  (state: CommentState, id:number) => {
+  (state: CommentState, id: number) => {
     if (state.comments) {
-      let comments = state.comments.filter((comment: Comment) => {
+      const comments = state.comments.filter((comment: Comment) => {
         return comment.movieId === id;
       });
       comments.sort((firstComment: Comment, secondComment: Comment) => {
         return Number(firstComment.createdAt > secondComment.createdAt);
-      })
+      });
       return comments;
-    }
-    else {
+    } else {
       return [];
     }
   }

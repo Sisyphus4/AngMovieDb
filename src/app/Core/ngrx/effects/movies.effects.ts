@@ -14,7 +14,7 @@ export class MoviesEffects {
 
   loadMovies$ = createEffect(() => this.actions$.pipe(
     ofType('[Movies Page] Load Movies'),
-    mergeMap(() => this.MovieDbService.getMovies()
+    mergeMap(() => this.movieDbService.getMovies()
       .pipe(
         map(response => (MoviesActions.getPopularMoviesSuccess({ movies: response.results }))),
         catchError(() => EMPTY)
@@ -24,7 +24,7 @@ export class MoviesEffects {
 
   loadMovie$ = createEffect(() => this.actions$.pipe(
     ofType('[Movie Page] Load Movie'),
-    mergeMap((action: GetMovieAction) => this.MovieDbService.getMovie(action.id)
+    mergeMap((action: GetMovieAction) => this.movieDbService.getMovie(action.id)
       .pipe(
         map((response: Movie) => (MoviesActions.getMovieSuccess({ movie: response }))),
         catchError(() => EMPTY)
@@ -35,6 +35,6 @@ export class MoviesEffects {
 
   constructor(
     private actions$: Actions,
-    private MovieDbService: MovieDbService,
+    private movieDbService: MovieDbService,
   ) { }
 }

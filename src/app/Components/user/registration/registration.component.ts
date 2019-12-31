@@ -29,12 +29,11 @@ export class RegistrationComponent implements OnInit {
       password: [''],
       recaptcha: '',
     }, Validators.required);
-    this.error$ = this.store.select(state => selectError(state))
+    this.error$ = this.store.select(state => selectError(state));
   }
 
   onSubmit() {
     const { username, password, recaptcha } = this.registrationForm.value;
     this.store.dispatch(AuthenticationActions.registerUser({ username, password, recaptcha }));
-    //this.router.navigate(['/home']);
   }
 }
