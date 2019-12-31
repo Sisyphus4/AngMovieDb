@@ -36,7 +36,6 @@ h1, p {
   .OneOfMovies img, .OneOfComparedMovies img{
     width: 185px;
     height: 278px;
-    cursor: pointer;
   }
   
   .TheMovie{
@@ -46,3 +45,6 @@ h1, p {
   img{
     margin: auto;
   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

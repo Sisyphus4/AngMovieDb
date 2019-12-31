@@ -1,0 +1,16 @@
+<form [formGroup]="registrationForm" class="registration" (ngSubmit)="onSubmit()">
+    <p>{{error$|async}}</p>
+    <mat-form-field>
+        <input required matInput placeholder="Login"  formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="password" required matInput placeholder="Password"  formControlName="password">
+    </mat-form-field>
+    <re-captcha 
+    required
+    formControlName="recaptcha"
+    siteKey="6LepX8oUAAAAAOF1_WTPmJ8YAdenCwX4PwbEtd2k"
+    ></re-captcha>
+    <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+</form>

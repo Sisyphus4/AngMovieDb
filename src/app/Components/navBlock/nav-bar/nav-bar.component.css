@@ -1,0 +1,29 @@
+.nav-bar__link{
+    text-decoration: none;
+    background-color: rgb(173, 247, 240); 
+    border: solid 1px black;
+    color: Black;
+    padding: 9px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    font-family: Arial;
+    font-weight: normal;
+  }
+.nav-bar__link_active{
+    background-color: Fuchsia;
+}
+.nav-bar{
+    display: flex;
+    font-weight: bolder;
+    font-size: 23px;  
+    background-color: rgb(12, 94, 100);
+    height: 40px;
+}
+
+.nav-bar p{
+  margin-left: auto;
+  margin-top: 10px;
+  margin-right: 200px;
+}

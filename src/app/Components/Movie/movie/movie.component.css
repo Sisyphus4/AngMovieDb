@@ -1,3 +1,10 @@
 .app-movie{
     padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
+.app-movie img {
+  margin-left: 0;
+  margin-bottom: 20px;
+}

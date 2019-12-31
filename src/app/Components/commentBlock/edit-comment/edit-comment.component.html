@@ -1,0 +1,9 @@
+<div class="post-block">
+    <p>Author: {{comment.author}}</p>
+    Comment:
+    <textarea type="textarea" [formControl]="inputComment"></textarea>
+    <div>
+        <button mat-raised-button class="post-button" (click)="onClick()">Post</button>
+        <button mat-raised-button class="post-button" (click)="onCancel()">Cancel</button>
+    </div>
+</div>
